@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - Magentamen Picks</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Magentamen Leaderboard</h1>
+        <nav><a href="/">Back to Picks</a></nav>
+    </header>
+    <main>
+        <section id="leaderboard-section">
+            <p>Loading leaderboard...</p>
+        </section>
+    </main>
+    <script>
+    async function loadLeaderboard() {
+        const res = await fetch('/api/leaderboard');
+        const data = await res.json();
+        let html = `<table id="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Player</th>
+                    <th>Total Points</th>
+                    <th>Record (W-L-T)</th>
+                    <th>Win %</th>
+                    <th>Last 3 (Pts/Rec)</th>
+                    <th>Last 5 (Pts/Rec)</th>
+                </tr>
+            </thead>
+            <tbody>`;
+        data.forEach(row => {
+            html += `<tr>
+                <td>${row.player}</td>
+                <td>${row.total_points}</td>
+                <td>${row.record}</td>
+                <td>${(row.win_pct * 100).toFixed(1)}%</td>
+                <td>${row.last3_points} (${row.last3_record})</td>
+                <td>${row.last5_points} (${row.last5_record})</td>
+            </tr>`;
+        });
+        html += '</tbody></table>';
+        document.getElementById('leaderboard-section').innerHTML = html;
+    }
+    loadLeaderboard();
+    </script>
+</body>
+</html> 

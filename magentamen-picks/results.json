@@ -1,0 +1,36 @@
+{
+  "2025-1": {
+    "Jaren": {
+      "Moneyline": "win",
+      "Favorite": "win",
+      "Underdog": "win",
+      "Over": "win",
+      "Under": "win",
+      "Touchdown Scorer": "win"
+    },
+    "JB": {
+      "Moneyline": "loss",
+      "Favorite": "loss",
+      "Underdog": "loss",
+      "Over": "loss",
+      "Under": "loss",
+      "Touchdown Scorer": "loss"
+    },
+    "Rory": {
+      "Moneyline": "win",
+      "Favorite": "win",
+      "Underdog": "loss",
+      "Over": "loss",
+      "Under": "win",
+      "Touchdown Scorer": "loss"
+    },
+    "Zach": {
+      "Moneyline": "tie",
+      "Favorite": "tie",
+      "Underdog": "tie",
+      "Over": "tie",
+      "Under": "tie",
+      "Touchdown Scorer": "tie"
+    }
+  }
+} 

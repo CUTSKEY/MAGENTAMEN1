@@ -1,0 +1,73 @@
+body {
+    background: #fff;
+    color: #000;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #d5008f;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    padding: 2rem;
+}
+#picks-section {
+    margin-top: 2rem;
+}
+#picks-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+#picks-table th, #picks-table td {
+    border: 1px solid #d5008f;
+    padding: 0.5rem;
+    text-align: center;
+}
+#picks-table th {
+    background: #d5008f;
+    color: #fff;
+}
+.pick-dropdown {
+    width: 90%;
+    padding: 0.25rem;
+}
+.save-pick {
+    background: #d5008f;
+    color: #fff;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    margin-left: 0.25rem;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.save-pick:hover {
+    background: #a00060;
+}
+#leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    min-width: 700px;
+}
+#leaderboard-table th, #leaderboard-table td {
+    border: 1px solid #d5008f;
+    padding: 0.75rem 1.25rem;
+    text-align: center;
+    font-size: 1.1rem;
+}
+#leaderboard-table th {
+    background: #d5008f;
+    color: #fff;
+    font-size: 1.15rem;
+}
+#leaderboard-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+} 

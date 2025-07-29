@@ -1,0 +1,44 @@
+{
+  "2025-1": {
+    "Zach": {
+      "Touchdown Scorer": "Ezekiel Elliott (DAL)",
+      "Under": "Under 45.5 (CIN/CLE)",
+      "Over": "Over 45.5 (KC/LAC)",
+      "Underdog": "Las Vegas Raiders",
+      "Favorite": "Indianapolis Colts",
+      "Moneyline": "New York Giants"
+    },
+    "Rory": {
+      "Touchdown Scorer": "Brandin Cooks (DAL)",
+      "Under": "Under 46.5 (MIA/IND)",
+      "Over": "Over 41.5 (ARI/NO)",
+      "Underdog": "Atlanta Falcons",
+      "Favorite": "Buffalo Bills",
+      "Moneyline": "Jacksonville Jaguars"
+    },
+    "JB": {
+      "Touchdown Scorer": "Rashee Rice (KC)",
+      "Under": "Under 39.5 (PIT/NYJ)",
+      "Over": "Over 45.5 (NYG/WAS)",
+      "Underdog": "Baltimore Ravens",
+      "Favorite": "New England Patriots",
+      "Moneyline": "Tampa Bay Buccaneers"
+    },
+    "Jaren": {
+      "Touchdown Scorer": "Marquise Brown (KC)",
+      "Under": "Under 45.5 (HOU/LAR)",
+      "Over": "Over 46.5 (CAR/JAX)",
+      "Underdog": "Carolina Panthers",
+      "Favorite": "Pittsburgh Steelers",
+      "Moneyline": "Miami Dolphins"
+    }
+  },
+  "2025-7": {
+    "Jaren": {
+      "Moneyline": "Jacksonville Jaguars"
+    },
+    "Rory": {
+      "Favorite": "Los Angeles Rams"
+    }
+  }
+}
