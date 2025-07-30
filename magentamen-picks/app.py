@@ -157,8 +157,22 @@ def save_pick():
     return jsonify({'success': True})
 
 @app.route('/leaderboard')
+@app.route("/leaderboard")
 def leaderboard_page():
     return render_template('leaderboard.html')
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
+@app.route("/schedule")
+def schedule():
+    return render_template("schedule.html")
+
+@app.route("/rules")
+def rules():
+    return render_template("rules.html")
+
 
 @app.route('/api/leaderboard')
 def leaderboard_api():
