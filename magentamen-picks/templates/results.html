@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results Management - Magentamen Picks</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Results Management</h1>
+        <nav>
+            <a href="/">Back to Picks</a> | 
+            <a href="/leaderboard">Leaderboard</a>
+        </nav>
+    </header>
+    <main>
+        <div>
+            <label for="results-week-selector"><strong>Select Week:</strong></label>
+            <select id="results-week-selector"></select>
+        </div>
+        
+        <section id="results-section">
+            <p>Loading results...</p>
+        </section>
+    </main>
+    
+    <script>
+        const NFL_WEEKS = 18;
+        const PLAYERS = ["Jaren", "JB", "Rory", "Zach"];
+        const CATEGORIES = ["Moneyline", "Favorite", "Underdog", "Over", "Under", "Touchdown Scorer"];
+        
+        function populateWeekSelector() {
+            const selector = document.getElementById('results-week-selector');
+            selector.innerHTML = '';
+            for (let i = 1; i <= NFL_WEEKS; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `Week ${i}`;
+                selector.appendChild(option);
+            }
+            selector.value = 1; // Default to week 1
+        }
+        
+        async function loadResults(week) {
+            const res = await fetch(`/api/results?week=${week}`);
+            const data = await res.json();
+            
+            let html = `<h2>Results - Week ${week}</h2>`;
+            html += '<table id="results-table"><thead><tr><th>Player</th>';
+            CATEGORIES.forEach(cat => {
+                html += `<th>${cat}</th>`;
+            });
+            html += '</tr></thead><tbody>';
+            
+            PLAYERS.forEach(player => {
+                html += `<tr><td><strong>${player}</strong></td>`;
+                CATEGORIES.forEach(cat => {
+                    const playerData = data[player];
+                    const catData = playerData?.[cat];
+                    
+                    if (catData) {
+                        const pick = catData.pick;
+                        const outcome = catData.outcome;
+                        
+                        let outcomeClass = '';
+                        if (outcome === 'win') outcomeClass = 'result-win';
+                        else if (outcome === 'loss') outcomeClass = 'result-loss';
+                        else if (outcome === 'tie') outcomeClass = 'result-tie';
+                        
+                        html += `<td class="${outcomeClass}">`;
+                        html += `<div class="pick-display">${pick}</div>`;
+                        html += `<select class="outcome-dropdown" data-player="${player}" data-category="${cat}">`;
+                        html += `<option value="pending" ${outcome === 'pending' ? 'selected' : ''}>Pending</option>`;
+                        html += `<option value="win" ${outcome === 'win' ? 'selected' : ''}>Win</option>`;
+                        html += `<option value="loss" ${outcome === 'loss' ? 'selected' : ''}>Loss</option>`;
+                        html += `<option value="tie" ${outcome === 'tie' ? 'selected' : ''}>Tie</option>`;
+                        html += `</select>`;
+                        html += `</td>`;
+                    } else {
+                        html += `<td class="no-pick">No Pick</td>`;
+                    }
+                });
+                html += '</tr>';
+            });
+            
+            html += '</tbody></table>';
+            document.getElementById('results-section').innerHTML = html;
+            
+            // Add event listeners for outcome dropdowns
+            document.querySelectorAll('.outcome-dropdown').forEach(select => {
+                select.addEventListener('change', async function() {
+                    const player = select.getAttribute('data-player');
+                    const category = select.getAttribute('data-category');
+                    const outcome = select.value;
+                    
+                    if (outcome !== 'pending') {
+                        const response = await fetch('/api/results', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                week: week,
+                                player: player,
+                                category: category,
+                                outcome: outcome
+                            })
+                        });
+                        
+                        if (response.ok) {
+                            // Update visual feedback
+                            const cell = select.parentElement;
+                            cell.className = `result-${outcome}`;
+                            
+                            // Flash success
+                            const originalBg = cell.style.backgroundColor;
+                            cell.style.backgroundColor = '#d4edda';
+                            setTimeout(() => {
+                                cell.style.backgroundColor = originalBg;
+                            }, 1000);
+                        } else {
+                            alert('Error saving result');
+                            loadResults(week); // Reload on error
+                        }
+                    }
+                });
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            populateWeekSelector();
+            loadResults(1);
+            
+            document.getElementById('results-week-selector').addEventListener('change', (e) => {
+                loadResults(e.target.value);
+            });
+        });
+    </script>
+</body>
+</html>
