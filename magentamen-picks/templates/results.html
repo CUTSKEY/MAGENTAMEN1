@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results Management - Magentamen Picks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .result-win {
+            background-color: #d1fae5;
+            border: 2px solid #10b981;
+            color: #065f46;
+        }
+        .result-loss {
+            background-color: #fee2e2;
+            border: 2px solid #ef4444;
+            color: #991b1b;
+        }
+        .result-tie {
+            background-color: #fef3c7;
+            border: 2px solid #f59e0b;
+            color: #92400e;
+        }
+        .result-pending {
+            background-color: #f3f4f6;
+            border: 2px solid #9ca3af;
+            color: #374151;
+        }
+        .pick-display {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .outcome-dropdown {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.375rem;
+            background-color: white;
+            font-size: 0.875rem;
+        }
+        .outcome-dropdown:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-gray-900">MAGENTAMEN</h1>
+                    <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm">RESULTS</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-600 hover:text-purple-600 transition">PICKS</a>
+                    <a href="/leaderboard" class="text-gray-600 hover:text-purple-600 transition">LEADERBOARD</a>
+                    <a href="/results" class="text-purple-600 font-medium">RESULTS</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-12">
+        <div class="container mx-auto px-6">
+            <!-- Week Selector -->
+            <div class="bg-white rounded-xl shadow-xl p-6 mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <label for="results-week-selector" class="text-lg font-bold text-gray-900">Select Week:</label>
+                        <select id="results-week-selector" class="ml-4 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                            <option value="">Loading weeks...</option>
+                        </select>
+                    </div>
+                    <div class="flex space-x-4">
+                        <button id="calculate-results-btn" class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-medium">
+                            Calculate Results
+                        </button>
+                        <button id="save-all-results-btn" class="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition font-medium">
+                            Save All Results
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Results Section -->
+            <section id="results-section" class="bg-white rounded-xl shadow-xl overflow-hidden">
+                <div class="p-8">
+                    <div class="text-center">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
+                        <p class="mt-4 text-gray-600">Loading results...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const NFL_WEEKS = 18;
+        const PLAYERS = ["Jaren", "JB", "Rory", "Zach"];
+        const CATEGORIES = ["Moneyline", "Favorite", "Underdog", "Over", "Under", "Touchdown Scorer"];
+        
+        function populateWeekSelector() {
+            const selector = document.getElementById('results-week-selector');
+            selector.innerHTML = '';
+            for (let i = 1; i <= NFL_WEEKS; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `Week ${i}`;
+                selector.appendChild(option);
+            }
+            selector.value = 1; // Default to week 1
+        }
+        
+        async function loadResults(week) {
+            const resultsSection = document.getElementById('results-section');
+            resultsSection.innerHTML = `
+                <div class="p-8">
+                    <div class="text-center">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
+                        <p class="mt-4 text-gray-600">Loading results...</p>
+                    </div>
+                </div>
+            `;
+            
+            try {
+                const res = await fetch(`/api/results?week=${week}`);
+                const data = await res.json();
+                
+                let html = `
+                    <div class="p-8">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-3xl font-bold text-gray-900">Results - Week ${week}</h2>
+                            <div class="flex space-x-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-4 h-4 bg-green-500 rounded"></div>
+                                    <span class="text-sm text-gray-600">Win</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-4 h-4 bg-red-500 rounded"></div>
+                                    <span class="text-sm text-gray-600">Loss</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-4 h-4 bg-yellow-500 rounded"></div>
+                                    <span class="text-sm text-gray-600">Tie</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gradient-to-r from-purple-600 to-purple-700 text-white">
+                                    <tr>
+                                        <th class="px-6 py-4 text-left text-sm font-medium uppercase tracking-wider">Player</th>
+                `;
+                
+                CATEGORIES.forEach(cat => {
+                    html += `<th class="px-6 py-4 text-center text-sm font-medium uppercase tracking-wider">${cat}</th>`;
+                });
+                
+                html += '</tr></thead><tbody class="divide-y divide-gray-200">';
+                
+                PLAYERS.forEach((player, playerIndex) => {
+                    const rowClass = playerIndex % 2 === 0 ? 'bg-gray-50' : 'bg-white';
+                    html += `
+                        <tr class="${rowClass} hover:bg-purple-50 transition">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-3">${player.charAt(0)}</div>
+                                    <span class="text-lg font-medium text-gray-900">${player}</span>
+                                </div>
+                            </td>
+                    `;
+                    
+                    CATEGORIES.forEach(cat => {
+                        const playerData = data[player];
+                        const catData = playerData?.[cat];
+                        
+                        if (catData) {
+                            const pick = catData.pick;
+                            const outcome = catData.outcome;
+                            
+                            let outcomeClass = 'result-pending';
+                            if (outcome === 'win') outcomeClass = 'result-win';
+                            else if (outcome === 'loss') outcomeClass = 'result-loss';
+                            else if (outcome === 'tie') outcomeClass = 'result-tie';
+                            
+                            html += `
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    <div class="${outcomeClass} rounded-lg p-3">
+                                        <div class="pick-display">${pick}</div>
+                                        <select class="outcome-dropdown" data-player="${player}" data-category="${cat}">
+                                            <option value="pending" ${outcome === 'pending' ? 'selected' : ''}>Pending</option>
+                                            <option value="win" ${outcome === 'win' ? 'selected' : ''}>Win</option>
+                                            <option value="loss" ${outcome === 'loss' ? 'selected' : ''}>Loss</option>
+                                            <option value="tie" ${outcome === 'tie' ? 'selected' : ''}>Tie</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            `;
+                        } else {
+                            html += `
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    <div class="result-pending rounded-lg p-3">
+                                        <div class="pick-display text-gray-500">No Pick</div>
+                                        <select class="outcome-dropdown" data-player="${player}" data-category="${cat}">
+                                            <option value="pending" selected>Pending</option>
+                                            <option value="win">Win</option>
+                                            <option value="loss">Loss</option>
+                                            <option value="tie">Tie</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            `;
+                        }
+                    });
+                    
+                    html += '</tr>';
+                });
+                
+                html += '</tbody></table></div></div>';
+                resultsSection.innerHTML = html;
+                
+                // Add event listeners for outcome dropdowns
+                document.querySelectorAll('.outcome-dropdown').forEach(select => {
+                    select.addEventListener('change', async function() {
+                        const player = select.getAttribute('data-player');
+                        const category = select.getAttribute('data-category');
+                        const outcome = select.value;
+                        
+                        if (outcome !== 'pending') {
+                            try {
+                                const response = await fetch('/api/results', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({
+                                        week: week,
+                                        player: player,
+                                        category: category,
+                                        outcome: outcome
+                                    })
+                                });
+                                
+                                if (response.ok) {
+                                    // Update visual feedback
+                                    const cell = select.parentElement;
+                                    cell.className = `result-${outcome} rounded-lg p-3`;
+                                    
+                                    // Flash success
+                                    const originalBg = cell.style.backgroundColor;
+                                    cell.style.backgroundColor = '#d4edda';
+                                    setTimeout(() => {
+                                        cell.style.backgroundColor = originalBg;
+                                    }, 1000);
+                                } else {
+                                    alert('Error saving result');
+                                    loadResults(week); // Reload on error
+                                }
+                            } catch (error) {
+                                console.error('Error saving result:', error);
+                                alert('Error saving result');
+                            }
+                        }
+                    });
+                });
+                
+            } catch (error) {
+                console.error('Error loading results:', error);
+                resultsSection.innerHTML = `
+                    <div class="p-8 text-center">
+                        <p class="text-red-500">Error loading results. Please try again.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        async function calculateResults(week) {
+            try {
+                const response = await fetch('/api/results/calculate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ week: week })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    alert(data.message);
+                    loadResults(week); // Reload results
+                } else {
+                    alert(data.error || 'Error calculating results');
+                }
+            } catch (error) {
+                console.error('Error calculating results:', error);
+                alert('Error calculating results');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            populateWeekSelector();
+            loadResults(1);
+            
+            document.getElementById('results-week-selector').addEventListener('change', (e) => {
+                loadResults(e.target.value);
+            });
+            
+            document.getElementById('calculate-results-btn').addEventListener('click', () => {
+                const week = document.getElementById('results-week-selector').value;
+                if (week) {
+                    calculateResults(week);
+                }
+            });
+            
+            document.getElementById('save-all-results-btn').addEventListener('click', () => {
+                alert('All results have been saved!');
+            });
+        });
+    </script>
+</body>
+</html>
