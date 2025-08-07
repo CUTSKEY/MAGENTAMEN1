@@ -43,6 +43,44 @@
             color: #9ca3af;
             background-color: #f3f4f6;
         }
+        /* Result styling for combined picks/results */
+        .result-win {
+            background-color: #d1fae5;
+            border: 2px solid #10b981;
+            color: #065f46;
+        }
+        .result-loss {
+            background-color: #fee2e2;
+            border: 2px solid #ef4444;
+            color: #991b1b;
+        }
+        .result-tie {
+            background-color: #fef3c7;
+            border: 2px solid #f59e0b;
+            color: #92400e;
+        }
+        .result-pending {
+            background-color: #f3f4f6;
+            border: 2px solid #9ca3af;
+            color: #374151;
+        }
+        .pick-display {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .outcome-dropdown {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.375rem;
+            background-color: white;
+            font-size: 0.875rem;
+        }
+        .outcome-dropdown:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -57,7 +95,6 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="/" class="text-purple-600 font-medium">PICKS</a>
                     <a href="/leaderboard" class="text-gray-600 hover:text-purple-600 transition">LEADERBOARD</a>
-                    <a href="/results" class="text-gray-600 hover:text-purple-600 transition">RESULTS</a>
                     <a href="#games" class="text-gray-600 hover:text-purple-600 transition">GAMES</a>
                 </div>
                 <button class="md:hidden">
@@ -171,7 +208,6 @@
                 <div class="flex space-x-6">
                     <a href="/" class="text-gray-400 hover:text-white transition">Home</a>
                     <a href="/leaderboard" class="text-gray-400 hover:text-white transition">Leaderboard</a>
-                    <a href="/results" class="text-gray-400 hover:text-white transition">Results</a>
                     <a href="#" class="text-gray-400 hover:text-white transition">Contact</a>
                 </div>
             </div>
