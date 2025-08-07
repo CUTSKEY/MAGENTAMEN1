@@ -99,45 +99,146 @@ with app.app_context():
         {"name": "Lamar Jackson", "position": "QB", "team": "BAL"},
         {"name": "Jalen Hurts", "position": "QB", "team": "PHI"},
         {"name": "Dak Prescott", "position": "QB", "team": "DAL"},
-        {"name": "Justin Herbert", "position": "QB", "team": "LAC"},
+        {"name": "Tua Tagovailoa", "position": "QB", "team": "MIA"},
         {"name": "Joe Burrow", "position": "QB", "team": "CIN"},
+        {"name": "Justin Herbert", "position": "QB", "team": "LAC"},
+        {"name": "Trevor Lawrence", "position": "QB", "team": "JAX"},
+        {"name": "Deshaun Watson", "position": "QB", "team": "CLE"},
+        {"name": "Kenny Pickett", "position": "QB", "team": "PIT"},
+        {"name": "C.J. Stroud", "position": "QB", "team": "HOU"},
+        {"name": "Anthony Richardson", "position": "QB", "team": "IND"},
+        {"name": "Will Levis", "position": "QB", "team": "TEN"},
+        {"name": "Russell Wilson", "position": "QB", "team": "DEN"},
+        {"name": "Jimmy Garoppolo", "position": "QB", "team": "LV"},
+        {"name": "Matthew Stafford", "position": "QB", "team": "LAR"},
+        {"name": "Brock Purdy", "position": "QB", "team": "SF"},
+        {"name": "Geno Smith", "position": "QB", "team": "SEA"},
+        {"name": "Kyler Murray", "position": "QB", "team": "ARI"},
+        {"name": "Jared Goff", "position": "QB", "team": "DET"},
+        {"name": "Jordan Love", "position": "QB", "team": "GB"},
+        {"name": "Kirk Cousins", "position": "QB", "team": "MIN"},
+        {"name": "Justin Fields", "position": "QB", "team": "CHI"},
+        {"name": "Derek Carr", "position": "QB", "team": "NO"},
+        {"name": "Baker Mayfield", "position": "QB", "team": "TB"},
+        {"name": "Desmond Ridder", "position": "QB", "team": "ATL"},
+        {"name": "Bryce Young", "position": "QB", "team": "CAR"},
+        {"name": "Daniel Jones", "position": "QB", "team": "NYG"},
+        {"name": "Sam Howell", "position": "QB", "team": "WAS"},
         {"name": "Aaron Rodgers", "position": "QB", "team": "NYJ"},
+        {"name": "Mac Jones", "position": "QB", "team": "NE"},
         
         # Running Backs
         {"name": "Christian McCaffrey", "position": "RB", "team": "SF"},
         {"name": "Saquon Barkley", "position": "RB", "team": "PHI"},
+        {"name": "Austin Ekeler", "position": "RB", "team": "LAC"},
         {"name": "Derrick Henry", "position": "RB", "team": "BAL"},
         {"name": "Nick Chubb", "position": "RB", "team": "CLE"},
+        {"name": "Alvin Kamara", "position": "RB", "team": "NO"},
         {"name": "Josh Jacobs", "position": "RB", "team": "GB"},
-        {"name": "Bijan Robinson", "position": "RB", "team": "ATL"},
-        {"name": "Jahmyr Gibbs", "position": "RB", "team": "DET"},
+        {"name": "Tony Pollard", "position": "RB", "team": "TEN"},
+        {"name": "Rachaad White", "position": "RB", "team": "TB"},
         {"name": "Breece Hall", "position": "RB", "team": "NYJ"},
+        {"name": "Travis Etienne", "position": "RB", "team": "JAX"},
+        {"name": "James Cook", "position": "RB", "team": "BUF"},
+        {"name": "Najee Harris", "position": "RB", "team": "PIT"},
+        {"name": "Dameon Pierce", "position": "RB", "team": "HOU"},
+        {"name": "Jonathan Taylor", "position": "RB", "team": "IND"},
+        {"name": "Javonte Williams", "position": "RB", "team": "DEN"},
+        {"name": "Josh Jacobs", "position": "RB", "team": "LV"},
+        {"name": "Kyren Williams", "position": "RB", "team": "LAR"},
+        {"name": "Kenneth Walker", "position": "RB", "team": "SEA"},
+        {"name": "James Conner", "position": "RB", "team": "ARI"},
+        {"name": "David Montgomery", "position": "RB", "team": "DET"},
+        {"name": "Aaron Jones", "position": "RB", "team": "GB"},
+        {"name": "Alexander Mattison", "position": "RB", "team": "MIN"},
+        {"name": "Khalil Herbert", "position": "RB", "team": "CHI"},
+        {"name": "Jamaal Williams", "position": "RB", "team": "NO"},
+        {"name": "Rachaad White", "position": "RB", "team": "TB"},
+        {"name": "Tyler Allgeier", "position": "RB", "team": "ATL"},
+        {"name": "Miles Sanders", "position": "RB", "team": "CAR"},
+        {"name": "Saquon Barkley", "position": "RB", "team": "NYG"},
+        {"name": "Brian Robinson", "position": "RB", "team": "WAS"},
         
         # Wide Receivers
         {"name": "Tyreek Hill", "position": "WR", "team": "MIA"},
-        {"name": "CeeDee Lamb", "position": "WR", "team": "DAL"},
+        {"name": "Justin Jefferson", "position": "WR", "team": "MIN"},
         {"name": "Ja'Marr Chase", "position": "WR", "team": "CIN"},
-        {"name": "Amon-Ra St. Brown", "position": "WR", "team": "DET"},
+        {"name": "CeeDee Lamb", "position": "WR", "team": "DAL"},
+        {"name": "A.J. Brown", "position": "WR", "team": "PHI"},
         {"name": "Stefon Diggs", "position": "WR", "team": "HOU"},
-        {"name": "AJ Brown", "position": "WR", "team": "PHI"},
-        {"name": "Garrett Wilson", "position": "WR", "team": "NYJ"},
+        {"name": "Davante Adams", "position": "WR", "team": "LV"},
+        {"name": "Cooper Kupp", "position": "WR", "team": "LAR"},
+        {"name": "Deebo Samuel", "position": "WR", "team": "SF"},
+        {"name": "DK Metcalf", "position": "WR", "team": "SEA"},
+        {"name": "Marquise Brown", "position": "WR", "team": "ARI"},
+        {"name": "Amon-Ra St. Brown", "position": "WR", "team": "DET"},
+        {"name": "Christian Watson", "position": "WR", "team": "GB"},
+        {"name": "D.J. Moore", "position": "WR", "team": "CHI"},
         {"name": "Chris Olave", "position": "WR", "team": "NO"},
+        {"name": "Mike Evans", "position": "WR", "team": "TB"},
+        {"name": "Drake London", "position": "WR", "team": "ATL"},
+        {"name": "Adam Thielen", "position": "WR", "team": "CAR"},
+        {"name": "Darius Slayton", "position": "WR", "team": "NYG"},
+        {"name": "Terry McLaurin", "position": "WR", "team": "WAS"},
+        {"name": "Garrett Wilson", "position": "WR", "team": "NYJ"},
+        {"name": "DeVante Parker", "position": "WR", "team": "NE"},
+        {"name": "Rashee Rice", "position": "WR", "team": "KC"},
+        {"name": "Gabe Davis", "position": "WR", "team": "BUF"},
+        {"name": "Zay Flowers", "position": "WR", "team": "BAL"},
+        {"name": "DeVonta Smith", "position": "WR", "team": "PHI"},
+        {"name": "Jaylen Waddle", "position": "WR", "team": "MIA"},
+        {"name": "Tee Higgins", "position": "WR", "team": "CIN"},
+        {"name": "Amari Cooper", "position": "WR", "team": "CLE"},
+        {"name": "George Pickens", "position": "WR", "team": "PIT"},
+        {"name": "Nico Collins", "position": "WR", "team": "HOU"},
+        {"name": "Michael Pittman", "position": "WR", "team": "IND"},
+        {"name": "Calvin Ridley", "position": "WR", "team": "JAX"},
+        {"name": "DeAndre Hopkins", "position": "WR", "team": "TEN"},
+        {"name": "Courtland Sutton", "position": "WR", "team": "DEN"},
+        {"name": "Jakobi Meyers", "position": "WR", "team": "LV"},
+        {"name": "Keenan Allen", "position": "WR", "team": "LAC"},
+        {"name": "Puka Nacua", "position": "WR", "team": "LAR"},
+        {"name": "Brandon Aiyuk", "position": "WR", "team": "SF"},
+        {"name": "Tyler Lockett", "position": "WR", "team": "SEA"},
         
         # Tight Ends
         {"name": "Travis Kelce", "position": "TE", "team": "KC"},
-        {"name": "Sam LaPorta", "position": "TE", "team": "DET"},
         {"name": "Mark Andrews", "position": "TE", "team": "BAL"},
-        {"name": "T.J. Hockenson", "position": "TE", "team": "MIN"},
-        {"name": "George Kittle", "position": "TE", "team": "SF"},
+        {"name": "Dawson Knox", "position": "TE", "team": "BUF"},
         {"name": "Dallas Goedert", "position": "TE", "team": "PHI"},
-        {"name": "Jake Ferguson", "position": "TE", "team": "DAL"},
-        {"name": "Dalton Kincaid", "position": "TE", "team": "BUF"},
+        {"name": "Durham Smythe", "position": "TE", "team": "MIA"},
+        {"name": "Hunter Henry", "position": "TE", "team": "NE"},
+        {"name": "Irv Smith", "position": "TE", "team": "CIN"},
+        {"name": "David Njoku", "position": "TE", "team": "CLE"},
+        {"name": "Pat Freiermuth", "position": "TE", "team": "PIT"},
+        {"name": "Dalton Schultz", "position": "TE", "team": "HOU"},
+        {"name": "Jelani Woods", "position": "TE", "team": "IND"},
+        {"name": "Evan Engram", "position": "TE", "team": "JAX"},
+        {"name": "Chigoziem Okonkwo", "position": "TE", "team": "TEN"},
+        {"name": "Greg Dulcich", "position": "TE", "team": "DEN"},
+        {"name": "Michael Mayer", "position": "TE", "team": "LV"},
+        {"name": "Gerald Everett", "position": "TE", "team": "LAC"},
+        {"name": "Tyler Higbee", "position": "TE", "team": "LAR"},
+        {"name": "George Kittle", "position": "TE", "team": "SF"},
+        {"name": "Noah Fant", "position": "TE", "team": "SEA"},
+        {"name": "Trey McBride", "position": "TE", "team": "ARI"},
+        {"name": "Sam LaPorta", "position": "TE", "team": "DET"},
+        {"name": "Luke Musgrave", "position": "TE", "team": "GB"},
+        {"name": "T.J. Hockenson", "position": "TE", "team": "MIN"},
+        {"name": "Cole Kmet", "position": "TE", "team": "CHI"},
+        {"name": "Juwan Johnson", "position": "TE", "team": "NO"},
+        {"name": "Cade Otton", "position": "TE", "team": "TB"},
+        {"name": "Kyle Pitts", "position": "TE", "team": "ATL"},
+        {"name": "Hayden Hurst", "position": "TE", "team": "CAR"},
+        {"name": "Darren Waller", "position": "TE", "team": "NYG"},
+        {"name": "Logan Thomas", "position": "TE", "team": "WAS"},
+        {"name": "Tyler Conklin", "position": "TE", "team": "NYJ"}
     ]
     
     for player_data in sample_nfl_players:
         if not NFLPlayer.query.filter_by(name=player_data["name"], team=player_data["team"]).first():
-            nfl_player = NFLPlayer(**player_data)
-            db.session.add(nfl_player)
+            player = NFLPlayer(**player_data)
+            db.session.add(player)
     
     db.session.commit()
 
@@ -147,201 +248,142 @@ def index():
 
 @app.route('/api/games')
 def get_games():
-    week_param = request.args.get('week', type=int)
-    season = 2025
-    today = datetime.utcnow()
+    week = request.args.get('week', type=int)
+    if not week:
+        return jsonify([])
     
-    print("=== API GAMES DEBUG ===")
-    print(f"Week param: {week_param}")
-    print(f"Season: {season}")
-    print(f"Today: {today}")
-    print(f"NFL_2025_WEEK1_START: {NFL_2025_WEEK1_START}")
-    print(f"ODDS_API_KEY exists: {bool(ODDS_API_KEY)}")
+    # Check if we have games for this week in the database
+    games = Game.query.filter_by(week=week, season=2025).all()
     
-    if week_param is None:
-        days_since_week1 = (today - NFL_2025_WEEK1_START).days
-        week = max(1, min(NFL_WEEKS, days_since_week1 // 7 + 1))
-        print(f"Calculated week: {week} (days since week 1: {days_since_week1})")
-    else:
-        week = max(1, min(NFL_WEEKS, week_param))
-        print(f"Using provided week: {week}")
+    if games:
+        # Return games from database
+        return jsonify([{
+            'home_team': game.home_team,
+            'away_team': game.away_team,
+            'commence_time': game.commence_time,
+            'bookmakers': json.loads(game.odds_data) if game.odds_data else []
+        } for game in games])
     
-    # Check if games already exist in database for this week
-    existing_games = Game.query.filter_by(week=week, season=season).all()
-    print(f"Existing games in database: {len(existing_games)}")
+    # If no games in database, fetch from API
+    if not ODDS_API_KEY:
+        return jsonify([])
     
-    if existing_games:
-        print("Returning existing games from database")
-        games_data = []
-        for game in existing_games:
-            game_dict = {
-                'id': game.id,
-                'home_team': game.home_team,
-                'away_team': game.away_team,
-                'commence_time': game.commence_time
-            }
-            if game.odds_data:
-                try:
-                    odds = json.loads(game.odds_data)
-                    game_dict.update(odds)
-                except:
-                    pass
-            games_data.append(game_dict)
-        print(f"Returning {len(games_data)} games from database")
-        return jsonify(games_data)
-    
-    print("No existing games found, fetching from API...")
-    
-    # Fetch from API and store in database
+    # Calculate the date for the week
     week_start = NFL_2025_WEEK1_START + timedelta(weeks=week-1)
     week_end = week_start + timedelta(days=7)
     
-    print(f"Week start: {week_start}")
-    print(f"Week end: {week_end}")
-    
-    params = {
-        'apiKey': ODDS_API_KEY,
-        'regions': 'us',
-        'markets': 'h2h,spreads,totals',
-        'oddsFormat': 'american',
-        'dateFormat': 'iso',
-        'commenceTimeFrom': week_start.strftime('%Y-%m-%dT00:00:00Z'),
-        'commenceTimeTo': week_end.strftime('%Y-%m-%dT00:00:00Z'),
-    }
-    
-    print(f"API URL: {ODDS_API_URL}")
-    print(f"API Params: {params}")
+    # Format dates for API
+    start_date = week_start.strftime('%Y-%m-%d')
+    end_date = week_end.strftime('%Y-%m-%d')
     
     try:
-        response = requests.get(ODDS_API_URL, params=params)
-        print(f"Response status: {response.status_code}")
-        print(f"Response headers: {dict(response.headers)}")
+        # Fetch odds from The Odds API
+        params = {
+            'apiKey': ODDS_API_KEY,
+            'regions': 'us',
+            'markets': 'h2h,spreads,totals',
+            'dateFormat': 'iso',
+            'oddsFormat': 'american'
+        }
         
-        if response.status_code == 200:
-            data = response.json()
-            print(f"API Response type: {type(data)}")
-            print(f"API Response length: {len(data) if isinstance(data, list) else 'Not a list'}")
-            print(f"API Response preview: {str(data)[:500]}...")
-            
-            if not data:
-                print("API returned empty data")
-                return jsonify([])
-            
-            if not isinstance(data, list):
-                print(f"API returned non-list data: {type(data)}")
-                return jsonify([])
-            
-            # Store games in database
-            stored_count = 0
-            for game_data in data:
-                try:
-                    odds_only = {k: v for k, v in game_data.items() 
-                                if k not in ['home_team', 'away_team', 'commence_time']}
-                    
-                    game = Game(
-                        week=week,
-                        season=season,
-                        home_team=game_data['home_team'],
-                        away_team=game_data['away_team'],
-                        commence_time=game_data['commence_time'],
-                        odds_data=json.dumps(odds_only)
-                    )
-                    db.session.add(game)
-                    stored_count += 1
-                except Exception as e:
-                    print(f"Error processing game data: {e}")
-                    print(f"Game data: {game_data}")
-            
-            db.session.commit()
-            print(f"Successfully stored {stored_count} games in database")
-            return jsonify(data)
-        else:
-            print(f"API Error: {response.status_code}")
-            print(f"Error response: {response.text}")
-            return jsonify({'error': 'Failed to fetch games', 'status_code': response.status_code}), 500
-            
-    except Exception as e:
-        print(f"Exception during API call: {e}")
-        return jsonify({'error': f'Exception during API call: {str(e)}'}), 500
+        response = requests.get(ODDS_API_URL, params=params)
+        response.raise_for_status()
+        
+        games_data = response.json()
+        
+        # Filter games for the specific week and store in database
+        week_games = []
+        for game in games_data:
+            game_date = datetime.fromisoformat(game['commence_time'].replace('Z', '+00:00'))
+            if week_start <= game_date < week_end:
+                # Store game in database
+                db_game = Game(
+                    week=week,
+                    season=2025,
+                    home_team=game['home_team'],
+                    away_team=game['away_team'],
+                    commence_time=game['commence_time'],
+                    odds_data=json.dumps(game['bookmakers'])
+                )
+                db.session.add(db_game)
+                week_games.append({
+                    'home_team': game['home_team'],
+                    'away_team': game['away_team'],
+                    'commence_time': game['commence_time'],
+                    'bookmakers': game['bookmakers']
+                })
+        
+        db.session.commit()
+        return jsonify(week_games)
+        
+    except requests.RequestException as e:
+        print(f"Error fetching games: {e}")
+        return jsonify([])
 
 @app.route('/api/picks', methods=['GET'])
 def get_picks():
     week = request.args.get('week', type=int)
-    season = 2025
-    
     if not week:
-        return jsonify({'error': 'Missing week parameter'}), 400
+        return jsonify({})
     
-    picks = Pick.query.filter_by(week=week, season=season).all()
+    picks = Pick.query.filter_by(week=week, season=2025).all()
     
-    # Group picks by player and category
     result = {}
     for pick in picks:
-        if pick.player.name not in result:
-            result[pick.player.name] = {}
-        result[pick.player.name][pick.category] = pick.value
+        player_name = pick.player.name
+        if player_name not in result:
+            result[player_name] = {}
+        result[player_name][pick.category] = pick.value
     
     return jsonify(result)
 
 @app.route('/api/picks', methods=['POST'])
 def save_pick():
     data = request.get_json()
-    
-    # Handle week format (could be '2025-1' or just '1')
-    week_param = data.get('week')
-    if '-' in str(week_param):
-        week = int(week_param.split('-')[1])
-    else:
-        week = int(week_param)
-    
-    season = 2025
+    week = data.get('week')
     player_name = data.get('player')
     category = data.get('category')
     value = data.get('value')
     
     if not all([week, player_name, category, value]):
-        return jsonify({'error': 'Missing required data'}), 400
+        return jsonify({'error': 'Missing required fields'}), 400
     
-    # Get or create player
-    player = Player.query.filter_by(name=player_name).first()
-    if not player:
-        player = Player(name=player_name)
-        db.session.add(player)
+    try:
+        # Get or create player
+        player = Player.query.filter_by(name=player_name).first()
+        if not player:
+            player = Player(name=player_name)
+            db.session.add(player)
+            db.session.flush()
+        
+        # Check if pick already exists
+        existing_pick = Pick.query.filter_by(
+            week=week,
+            season=2025,
+            player_id=player.id,
+            category=category
+        ).first()
+        
+        if existing_pick:
+            # Update existing pick
+            existing_pick.value = value
+        else:
+            # Create new pick
+            pick = Pick(
+                week=week,
+                season=2025,
+                player_id=player.id,
+                category=category,
+                value=value
+            )
+            db.session.add(pick)
+        
         db.session.commit()
-    
-    # Check if this value is already taken by another player for this category/week
-    existing_pick = Pick.query.filter_by(
-        week=week, 
-        season=season, 
-        category=category, 
-        value=value
-    ).filter(Pick.player_id != player.id).first()
-    
-    if existing_pick:
-        return jsonify({'error': 'This pick is already taken by another player'}), 400
-    
-    # Get or create pick for this player/week/category
-    pick = Pick.query.filter_by(
-        week=week, 
-        season=season, 
-        player_id=player.id, 
-        category=category
-    ).first()
-    
-    if not pick:
-        pick = Pick(
-            week=week, 
-            season=season, 
-            player_id=player.id, 
-            category=category, 
-            value=value
-        )
-        db.session.add(pick)
-    else:
-        pick.value = value
-    
-    db.session.commit()
-    return jsonify({'success': True})
+        return jsonify({'success': True})
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/leaderboard')
 def leaderboard_page():
@@ -349,242 +391,180 @@ def leaderboard_page():
 
 @app.route('/api/leaderboard')
 def leaderboard_api():
-    results = Result.query.all()
+    # Get all results grouped by player
+    results = db.session.query(
+        Player.name,
+        db.func.count(Result.id).label('total_picks'),
+        db.func.sum(db.case((Result.outcome == 'win', 1), else_=0)).label('wins'),
+        db.func.sum(db.case((Result.outcome == 'loss', 1), else_=0)).label('losses'),
+        db.func.sum(db.case((Result.outcome == 'tie', 1), else_=0)).label('ties')
+    ).join(Result, Player.id == Result.player_id).group_by(Player.id, Player.name).all()
     
-    # Scoring system
-    score_map = {'win': 3, 'tie': 1, 'loss': 0}
-    
-    # Group results by player and week
-    player_stats = {}
-    week_results = {}
-    
-    for result in results:
-        player_name = result.player.name
-        week_key = f"{result.season}-{result.week}"
-        
-        if player_name not in player_stats:
-            player_stats[player_name] = {
-                'total_points': 0,
-                'wins': 0,
-                'losses': 0,
-                'ties': 0,
-                'weekly': []
-            }
-        
-        if week_key not in week_results:
-            week_results[week_key] = {}
-        
-        if player_name not in week_results[week_key]:
-            week_results[week_key][player_name] = {
-                'points': 0,
-                'wins': 0,
-                'losses': 0,
-                'ties': 0
-            }
-        
-        # Add to totals
-        points = score_map.get(result.outcome, 0)
-        player_stats[player_name]['total_points'] += points
-        week_results[week_key][player_name]['points'] += points
-        
-        if result.outcome == 'win':
-            player_stats[player_name]['wins'] += 1
-            week_results[week_key][player_name]['wins'] += 1
-        elif result.outcome == 'loss':
-            player_stats[player_name]['losses'] += 1
-            week_results[week_key][player_name]['losses'] += 1
-        elif result.outcome == 'tie':
-            player_stats[player_name]['ties'] += 1
-            week_results[week_key][player_name]['ties'] += 1
-    
-    # Calculate weekly stats for each player
-    for player_name in player_stats:
-        weekly_stats = []
-        for week_key in sorted(week_results.keys(), key=lambda x: int(x.split('-')[1])):
-            if player_name in week_results[week_key]:
-                weekly_stats.append({
-                    'week': week_key,
-                    **week_results[week_key][player_name]
-                })
-        player_stats[player_name]['weekly'] = weekly_stats
-    
-    # Build leaderboard
     leaderboard = []
-    for player_name, stats in player_stats.items():
-        total_picks = stats['wins'] + stats['losses'] + stats['ties']
-        win_pct = (stats['wins'] + 0.5 * stats['ties']) / total_picks if total_picks else 0
+    for result in results:
+        total_picks = result.total_picks or 0
+        wins = result.wins or 0
+        losses = result.losses or 0
+        ties = result.ties or 0
         
-        # Last 3 and 5 weeks
-        last3 = stats['weekly'][-3:] if len(stats['weekly']) >= 3 else stats['weekly']
-        last5 = stats['weekly'][-5:] if len(stats['weekly']) >= 5 else stats['weekly']
-        
-        last3_points = sum(w['points'] for w in last3)
-        last3_wins = sum(w['wins'] for w in last3)
-        last3_losses = sum(w['losses'] for w in last3)
-        last3_ties = sum(w['ties'] for w in last3)
-        
-        last5_points = sum(w['points'] for w in last5)
-        last5_wins = sum(w['wins'] for w in last5)
-        last5_losses = sum(w['losses'] for w in last5)
-        last5_ties = sum(w['ties'] for w in last5)
-        
-        leaderboard.append({
-            'player': player_name,
-            'total_points': stats['total_points'],
-            'record': f"{stats['wins']}-{stats['losses']}-{stats['ties']}",
-            'win_pct': round(win_pct, 3),
-            'last3_points': last3_points,
-            'last3_record': f"{last3_wins}-{last3_losses}-{last3_ties}",
-            'last5_points': last5_points,
-            'last5_record': f"{last5_wins}-{last5_losses}-{last5_ties}"
-        })
+        if total_picks > 0:
+            win_percentage = (wins / total_picks) * 100
+            leaderboard.append({
+                'player': result.name,
+                'wins': wins,
+                'losses': losses,
+                'ties': ties,
+                'total_picks': total_picks,
+                'win_percentage': round(win_percentage, 1)
+            })
     
-    leaderboard.sort(key=lambda x: x['total_points'], reverse=True)
+    # Sort by win percentage (descending)
+    leaderboard.sort(key=lambda x: x['win_percentage'], reverse=True)
+    
     return jsonify(leaderboard)
 
 @app.route('/api/starters')
 def get_starters():
-    team_abbrs = request.args.get('teams', '')
-    if not team_abbrs:
+    teams = request.args.get('teams', '').split(',')
+    if not teams or teams[0] == '':
         return jsonify([])
     
-    abbr_list = [abbr.strip().upper() for abbr in team_abbrs.split(',') if abbr.strip()]
-    
-    # Get players from database for the requested teams
+    # Get active players for the specified teams
     players = NFLPlayer.query.filter(
-        NFLPlayer.team.in_(abbr_list),
+        NFLPlayer.team.in_(teams),
         NFLPlayer.active == True
     ).all()
     
-    return jsonify([
-        {
-            "name": player.name,
-            "pos": player.position,
-            "team": player.team
-        }
-        for player in players
-    ])
+    return jsonify([{
+        'name': player.name,
+        'team': player.team,
+        'pos': player.position
+    } for player in players])
 
-@app.route('/results')
-def results_page():
-    return render_template('results.html')
+# Remove the separate results route since we're combining it with picks
+# @app.route('/results')
+# def results_page():
+#     return render_template('results.html')
 
 @app.route('/api/results', methods=['GET'])
 def get_results():
     week = request.args.get('week', type=int)
-    season = 2025
-    
     if not week:
-        return jsonify({'error': 'Missing week parameter'}), 400
+        return jsonify({})
     
-    # Get all picks for the week
-    picks = Pick.query.filter_by(week=week, season=season).all()
-    results = Result.query.filter_by(week=week, season=season).all()
+    # Get all results for the week
+    results = Result.query.filter_by(week=week, season=2025).all()
     
-    # Create results lookup
-    results_lookup = {}
+    result_data = {}
     for result in results:
-        key = f"{result.player.name}_{result.category}"
-        results_lookup[key] = result.outcome
-    
-    # Build response
-    data = {}
-    for pick in picks:
-        if pick.player.name not in data:
-            data[pick.player.name] = {}
+        player_name = result.player.name
+        if player_name not in result_data:
+            result_data[player_name] = {}
         
-        key = f"{pick.player.name}_{pick.category}"
-        outcome = results_lookup.get(key, 'pending')
+        # Get the original pick value
+        pick_value = ""
+        if result.pick_id:
+            pick = Pick.query.get(result.pick_id)
+            if pick:
+                pick_value = pick.value
         
-        data[pick.player.name][pick.category] = {
-            'pick': pick.value,
-            'outcome': outcome
+        result_data[player_name][result.category] = {
+            'outcome': result.outcome,
+            'pick': pick_value
         }
     
-    return jsonify(data)
+    return jsonify(result_data)
 
 @app.route('/api/results', methods=['POST'])
 def save_result():
     data = request.get_json()
-    
     week = data.get('week')
-    season = 2025
     player_name = data.get('player')
     category = data.get('category')
-    outcome = data.get('outcome')  # 'win', 'loss', or 'tie'
+    outcome = data.get('outcome')
     
     if not all([week, player_name, category, outcome]):
-        return jsonify({'error': 'Missing required data'}), 400
+        return jsonify({'error': 'Missing required fields'}), 400
     
-    if outcome not in ['win', 'loss', 'tie']:
-        return jsonify({'error': 'Invalid outcome'}), 400
-    
-    # Get player
-    player = Player.query.filter_by(name=player_name).first()
-    if not player:
-        return jsonify({'error': 'Player not found'}), 400
-    
-    # Get pick
-    pick = Pick.query.filter_by(
-        week=week,
-        season=season,
-        player_id=player.id,
-        category=category
-    ).first()
-    
-    if not pick:
-        return jsonify({'error': 'Pick not found'}), 400
-    
-    # Get or create result
-    result = Result.query.filter_by(
-        week=week,
-        season=season,
-        player_id=player.id,
-        category=category
-    ).first()
-    
-    if not result:
-        result = Result(
+    try:
+        # Get player
+        player = Player.query.filter_by(name=player_name).first()
+        if not player:
+            return jsonify({'error': 'Player not found'}), 404
+        
+        # Get the pick for this player/category/week
+        pick = Pick.query.filter_by(
             week=week,
-            season=season,
+            season=2025,
             player_id=player.id,
-            category=category,
-            outcome=outcome,
-            pick_id=pick.id
-        )
-        db.session.add(result)
-    else:
-        result.outcome = outcome
-    
-    db.session.commit()
-    return jsonify({'success': True})
+            category=category
+        ).first()
+        
+        # Check if result already exists
+        existing_result = Result.query.filter_by(
+            week=week,
+            season=2025,
+            player_id=player.id,
+            category=category
+        ).first()
+        
+        if existing_result:
+            # Update existing result
+            existing_result.outcome = outcome
+            if pick:
+                existing_result.pick_id = pick.id
+        else:
+            # Create new result
+            result = Result(
+                week=week,
+                season=2025,
+                player_id=player.id,
+                category=category,
+                outcome=outcome,
+                pick_id=pick.id if pick else None
+            )
+            db.session.add(result)
+        
+        db.session.commit()
+        return jsonify({'success': True})
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/api/week/lock', methods=['POST'])
 def lock_week():
     data = request.get_json()
     week = data.get('week')
-    season = 2025
     locked_by = data.get('locked_by', 'Admin')
     
     if not week:
-        return jsonify({'error': 'Missing week parameter'}), 400
+        return jsonify({'error': 'Week is required'}), 400
     
-    # Check if week is already locked
-    existing_lock = WeekLock.query.filter_by(week=week, season=season).first()
-    if existing_lock:
-        return jsonify({'error': 'Week is already locked'}), 400
-    
-    # Create lock
-    week_lock = WeekLock(week=week, season=season, locked_by=locked_by)
-    db.session.add(week_lock)
-    db.session.commit()
-    
-    return jsonify({'success': True, 'locked_at': week_lock.locked_at.isoformat()})
+    try:
+        # Check if week is already locked
+        existing_lock = WeekLock.query.filter_by(week=week, season=2025).first()
+        if existing_lock:
+            return jsonify({'error': 'Week is already locked'}), 400
+        
+        # Create new lock
+        lock = WeekLock(
+            week=week,
+            season=2025,
+            locked_by=locked_by
+        )
+        db.session.add(lock)
+        db.session.commit()
+        
+        return jsonify({'success': True, 'message': f'Week {week} locked successfully'})
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/api/week/lock/<int:week>')
 def get_week_lock_status(week):
-    season = 2025
-    lock = WeekLock.query.filter_by(week=week, season=season).first()
+    lock = WeekLock.query.filter_by(week=week, season=2025).first()
     
     if lock:
         return jsonify({
@@ -593,61 +573,68 @@ def get_week_lock_status(week):
             'locked_by': lock.locked_by
         })
     else:
-        return jsonify({'locked': False})
+        return jsonify({
+            'locked': False,
+            'locked_at': None,
+            'locked_by': None
+        })
 
 @app.route('/api/results/calculate', methods=['POST'])
 def calculate_results():
     data = request.get_json()
     week = data.get('week')
-    season = 2025
     
     if not week:
-        return jsonify({'error': 'Missing week parameter'}), 400
+        return jsonify({'error': 'Week is required'}), 400
     
-    # Get all picks for the week
-    picks = Pick.query.filter_by(week=week, season=season).all()
-    
-    # Get games for the week
-    games = Game.query.filter_by(week=week, season=season).all()
-    
-    # Fetch game results from external API
-    game_results = fetch_game_results(week, season)
-    
-    # Calculate outcomes for each pick
-    results_updated = 0
-    for pick in picks:
-        outcome = calculate_pick_outcome(pick, game_results, games)
-        if outcome:
-            # Update or create result
-            result = Result.query.filter_by(
-                week=week,
-                season=season,
-                player_id=pick.player_id,
-                category=pick.category
-            ).first()
-            
-            if not result:
-                result = Result(
+    try:
+        # Get all picks for the week
+        picks = Pick.query.filter_by(week=week, season=2025).all()
+        
+        # Get game results
+        game_results = fetch_game_results(week, 2025)
+        
+        # Get games for reference
+        games = Game.query.filter_by(week=week, season=2025).all()
+        
+        calculated_count = 0
+        for pick in picks:
+            outcome = calculate_pick_outcome(pick, game_results, games)
+            if outcome:
+                # Check if result already exists
+                existing_result = Result.query.filter_by(
                     week=week,
-                    season=season,
+                    season=2025,
                     player_id=pick.player_id,
-                    category=pick.category,
-                    outcome=outcome,
-                    pick_id=pick.id
-                )
-                db.session.add(result)
-            else:
-                result.outcome = outcome
-            
-            results_updated += 1
-    
-    db.session.commit()
-    
-    return jsonify({
-        'success': True,
-        'results_updated': results_updated,
-        'message': f'Updated {results_updated} results for Week {week}'
-    })
+                    category=pick.category
+                ).first()
+                
+                if existing_result:
+                    existing_result.outcome = outcome
+                    existing_result.pick_id = pick.id
+                else:
+                    result = Result(
+                        week=week,
+                        season=2025,
+                        player_id=pick.player_id,
+                        category=pick.category,
+                        outcome=outcome,
+                        pick_id=pick.id
+                    )
+                    db.session.add(result)
+                
+                calculated_count += 1
+        
+        db.session.commit()
+        
+        return jsonify({
+            'success': True,
+            'message': f'Calculated {calculated_count} results for Week {week}'
+        })
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
 
 def fetch_game_results(week, season):
     """
