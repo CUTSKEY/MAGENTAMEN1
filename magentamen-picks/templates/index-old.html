@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magentamen Picks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-gray-900">MAGENTAMEN</h1>
+                    <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm">NFL PICKS</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="rules.html" class="text-gray-600 hover:text-purple-600 transition">RULES</a>
+                    <a href="#SCHEDULE" class="text-gray-600 hover:text-purple-600 transition">SCHEDULE</a>
+                    <a href="#PICKS" class="text-gray-600 hover:text-purple-600 transition">PICKS</a>
+                    <a href="#LEADERBOARD" class="text-gray-600 hover:text-purple-600 transition">LEADERBOARD</a>
+                    <button class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">
+                        GET STARTED →
+                    </button>
+                </div>
+                <button class="md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white pt-24 pb-20">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <p class="text-purple-200 text-sm uppercase tracking-wide mb-2">Can't join this year? Subscribe on YouTube to see the talks & Keynote →</p>
+                    <h2 class="text-5xl md:text-7xl font-bold mb-6">MAGENTAMEN</h2>
+                    <p class="text-xl md:text-2xl mb-8 text-purple-100">
+                        JAREN LOVES MAGENTAMEN<br>
+                    </p>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <!-- Player Cards Grid -->
+                    <div class="grid grid-cols-2 gap-4 transform rotate-3">
+                        <div class="bg-white rounded-lg shadow-xl p-6 transform -rotate-3 hover:scale-105 transition float-animation">
+                            <div class="w-20 h-20 bg-purple-500 rounded-full mb-4"></div>
+                            <h3 class="font-bold text-gray-900">Jaren</h3>
+                            <p class="text-sm text-gray-600">6-0-0 Record</p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-xl p-6 transform rotate-2 hover:scale-105 transition float-animation" style="animation-delay: 1s;">
+                            <div class="w-20 h-20 bg-pink-500 rounded-full mb-4"></div>
+                            <h3 class="font-bold text-gray-900">JB</h3>
+                            <p class="text-sm text-gray-600">0-6-0 Record</p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-xl p-6 transform -rotate-2 hover:scale-105 transition float-animation" style="animation-delay: 2s;">
+                            <div class="w-20 h-20 bg-red-500 rounded-full mb-4"></div>
+                            <h3 class="font-bold text-gray-900">Rory</h3>
+                            <p class="text-sm text-gray-600">3-3-0 Record</p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-xl p-6 transform rotate-3 hover:scale-105 transition float-animation" style="animation-delay: 3s;">
+                            <div class="w-20 h-20 bg-indigo-500 rounded-full mb-4"></div>
+                            <h3 class="font-bold text-gray-900">Zach</h3>
+                            <p class="text-sm text-gray-600">0-0-6 Record</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Week Selector Section -->
+    <section class="bg-white py-12 shadow-sm">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">NFL Week Selector</h3>
+                    <p class="text-gray-600">Choose a week to view games and make your picks</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <select id="week-selector" class="px-6 py-3 bg-gray-100 rounded-lg text-gray-900 font-medium focus:outline-none focus:ring-2 focus:ring-purple-600">
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="schedule" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">This Week's Games</h2>
+            <div id="games-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Games will be populated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Picks Section -->
+    <section id="picks" class="bg-gray-100 py-16">
+        <div class="container mx-auto px-6">
+            <div id="picks-section">
+                <!-- Picks table will be populated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div class="group hover:scale-105 transition">
+                    <div class="text-5xl font-bold text-purple-600 mb-2">18</div>
+                    <p class="text-gray-600">Total Weeks</p>
+                </div>
+                <div class="group hover:scale-105 transition">
+                    <div class="text-5xl font-bold text-purple-600 mb-2">4</div>
+                    <p class="text-gray-600">Players Competing</p>
+                </div>
+                <div class="group hover:scale-105 transition">
+                    <div class="text-5xl font-bold text-purple-600 mb-2">6</div>
+                    <p class="text-gray-600">Categories</p>
+                </div>
+                <div class="group hover:scale-105 transition">
+                    <div class="text-5xl font-bold text-purple-600 mb-2">432</div>
+                    <p class="text-gray-600">Total Picks</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-2">MAGENTAMEN PICKS</h3>
+                    <p class="text-gray-400">The ultimate NFL picks competition</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="/schedule" class="text-gray-400 hover:text-white transition">About</a>
+                    <a href="rules.html" class="text-gray-400 hover:text-white transition">RULES</a>
+                    <a href="/leaderboard" class="text-gray-400 hover:text-white transition">Leaderboard</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Contact</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p>&copy; 2025 MAGENTAMEN. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Include your existing script with some styling updates -->
+    <script src="/static/script.js"></script>
+    <script>
+        // Override some styling in the existing script
+        const originalRenderPicksTableWithOptions = window.renderPicksTableWithOptions;
+        window.renderPicksTableWithOptions = async function() {
+            await originalRenderPicksTableWithOptions();
+            
+            // Update table styling
+            const table = document.getElementById('picks-table');
+            if (table) {
+                table.className = 'w-full bg-white rounded-lg shadow-lg overflow-hidden';
+                
+                // Style the header
+                const thead = table.querySelector('thead');
+                if (thead) {
+                    thead.className = 'bg-purple-600 text-white';
+                    thead.querySelectorAll('th').forEach(th => {
+                        th.className = 'px-6 py-4 text-left text-sm font-medium uppercase tracking-wider';
+                    });
+                }
+                
+                // Style the body
+                const tbody = table.querySelector('tbody');
+                if (tbody) {
+                    tbody.querySelectorAll('tr').forEach((tr, index) => {
+                        tr.className = index % 2 === 0 ? 'bg-gray-50' : 'bg-white';
+                        tr.classList.add('hover:bg-purple-50', 'transition');
+                        
+                        tr.querySelectorAll('td').forEach(td => {
+                            td.className = 'px-6 py-4 whitespace-nowrap text-sm text-gray-900';
+                        });
+                    });
+                }
+                
+                // Style dropdowns
+                document.querySelectorAll('.pick-dropdown').forEach(select => {
+                    select.className = 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm';
+                });
+                
+                // Style save buttons
+                document.querySelectorAll('.save-pick').forEach(btn => {
+                    btn.className = 'ml-2 px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition text-sm font-medium';
+                });
+            }
+        };
+        
+        // Override game rendering
+        const originalFetchGamesForWeek = window.fetchGamesForWeek;
+        window.fetchGamesForWeek = function(week) {
+            const gamesList = document.getElementById('games-list');
+            gamesList.innerHTML = '<div class="col-span-full text-center"><p class="text-gray-500">Loading games...</p></div>';
+            
+            fetch(`/api/games?week=${week}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (Array.isArray(data) && data.length > 0) {
+                        gamesList.innerHTML = '';
+                        data.forEach(game => {
+                            const home = game.home_team;
+                            const away = game.away_team;
+                            const commence = new Date(game.commence_time);
+                            const dateStr = commence.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+                            const timeStr = commence.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+                            
+                            const div = document.createElement('div');
+                            div.className = 'bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition transform hover:-translate-y-1';
+                            div.innerHTML = `
+                                <div class="flex justify-between items-start mb-4">
+                                    <span class="text-xs text-purple-600 font-semibold uppercase">${dateStr}</span>
+                                    <span class="text-xs text-gray-500">${timeStr}</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-medium text-gray-900">${away}</span>
+                                        <span class="text-sm text-gray-500">@</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-medium text-gray-900">${home}</span>
+                                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">HOME</span>
+                                    </div>
+                                </div>
+                            `;
+                            gamesList.appendChild(div);
+                        });
+                    } else {
+                        gamesList.innerHTML = '<div class="col-span-full text-center"><p class="text-gray-500">No games found for this week.</p></div>';
+                    }
+                })
+                .catch(err => {
+                    gamesList.innerHTML = '<div class="col-span-full text-center"><p class="text-red-500">Error loading games.</p></div>';
+                    console.error(err);
+                });
+        };
+    </script>
+</body>
+</html>
