@@ -5,9 +5,49 @@ const gamesList = document.getElementById('games-list');
 const PLAYERS = ["Jaren", "JB", "Rory", "Zach"];
 const CATEGORIES = ["Moneyline", "Favorite", "Underdog", "Over", "Under", "Touchdown Scorer"];
 
+// Team abbreviations mapping
+const TEAM_ABBREVIATIONS = {
+    "Kansas City Chiefs": "KC",
+    "Baltimore Ravens": "BAL", 
+    "Buffalo Bills": "BUF",
+    "New York Jets": "NYJ",
+    "Dallas Cowboys": "DAL",
+    "Philadelphia Eagles": "PHI",
+    "Miami Dolphins": "MIA",
+    "New England Patriots": "NE",
+    "Cincinnati Bengals": "CIN",
+    "Cleveland Browns": "CLE",
+    "Pittsburgh Steelers": "PIT",
+    "Houston Texans": "HOU",
+    "Indianapolis Colts": "IND",
+    "Jacksonville Jaguars": "JAX",
+    "Tennessee Titans": "TEN",
+    "Denver Broncos": "DEN",
+    "Las Vegas Raiders": "LV",
+    "Los Angeles Chargers": "LAC",
+    "Los Angeles Rams": "LAR",
+    "San Francisco 49ers": "SF",
+    "Seattle Seahawks": "SEA",
+    "Arizona Cardinals": "ARI",
+    "Detroit Lions": "DET",
+    "Green Bay Packers": "GB",
+    "Minnesota Vikings": "MIN",
+    "Chicago Bears": "CHI",
+    "New Orleans Saints": "NO",
+    "Tampa Bay Buccaneers": "TB",
+    "Atlanta Falcons": "ATL",
+    "Carolina Panthers": "CAR",
+    "New York Giants": "NYG",
+    "Washington Commanders": "WAS"
+};
+
 let currentWeekLocked = false;
 let picksMode = true; // true = picks, false = results
 let gameResults = {}; // Store game results for automatic outcome calculation
+
+function getTeamAbbreviation(teamName) {
+    return TEAM_ABBREVIATIONS[teamName] || teamName;
+}
 
 function getCurrentNFLWeek() {
     // NFL 2025 Week 1 starts Sep 4, 2025
@@ -28,17 +68,34 @@ async function checkWeekLockStatus(week) {
         
         const lockBtn = document.getElementById('lock-week-btn');
         const lockBtnText = document.getElementById('lock-btn-text');
+        const lockIcon = lockBtn.querySelector('svg');
         
         if (data.locked) {
+            // Show unlock state (grey button)
             lockBtn.classList.remove('bg-red-600', 'hover:bg-red-700');
-            lockBtn.classList.add('bg-gray-600', 'cursor-not-allowed');
-            lockBtn.disabled = true;
-            lockBtnText.textContent = `Locked (${new Date(data.locked_at).toLocaleDateString()})`;
+            lockBtn.classList.add('bg-gray-600', 'hover:bg-gray-700');
+            lockBtn.disabled = false;
+            lockBtnText.textContent = 'Unlock Week';
+            
+            // Update icon to show unlocked state
+            if (lockIcon) {
+                lockIcon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+                `;
+            }
         } else {
-            lockBtn.classList.remove('bg-gray-600', 'cursor-not-allowed');
+            // Show lock state (red button)
+            lockBtn.classList.remove('bg-gray-600', 'hover:bg-gray-700');
             lockBtn.classList.add('bg-red-600', 'hover:bg-red-700');
             lockBtn.disabled = false;
             lockBtnText.textContent = 'Lock Week';
+            
+            // Update icon to show locked state
+            if (lockIcon) {
+                lockIcon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                `;
+            }
         }
         
         return data.locked;
@@ -48,38 +105,62 @@ async function checkWeekLockStatus(week) {
     }
 }
 
-async function lockWeek(week) {
+async function toggleWeekLock(week) {
     if (currentWeekLocked) {
-        alert('This week is already locked!');
-        return;
-    }
-    
-    if (!confirm('Are you sure you want to lock this week? Once locked, no picks can be changed.')) {
-        return;
-    }
-    
-    try {
-        const response = await fetch('/api/week/lock', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                week: week,
-                locked_by: 'Admin'
-            })
-        });
-        
-        const data = await response.json();
-        
-        if (response.ok) {
-            alert('Week locked successfully!');
-            await checkWeekLockStatus(week);
-            renderPicksTableWithOptions(); // Re-render to disable dropdowns
-        } else {
-            alert(data.error || 'Error locking week');
+        // Week is locked, so unlock it
+        if (!confirm('Are you sure you want to unlock this week? This will allow picks to be changed again.')) {
+            return;
         }
-    } catch (error) {
-        console.error('Error locking week:', error);
-        alert('Error locking week');
+        
+        try {
+            const response = await fetch('/api/week/unlock', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ week: week })
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok) {
+                alert('Week unlocked successfully!');
+                await checkWeekLockStatus(week);
+                renderPicksTableWithOptions(); // Re-render to enable dropdowns
+            } else {
+                alert(data.error || 'Error unlocking week');
+            }
+        } catch (error) {
+            console.error('Error unlocking week:', error);
+            alert('Error unlocking week');
+        }
+    } else {
+        // Week is unlocked, so lock it
+        if (!confirm('Are you sure you want to lock this week? Once locked, picks cannot be changed until unlocked.')) {
+            return;
+        }
+        
+        try {
+            const response = await fetch('/api/week/lock', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    week: week,
+                    locked_by: 'Admin'
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok) {
+                alert('Week locked successfully!');
+                await checkWeekLockStatus(week);
+                renderPicksTableWithOptions(); // Re-render to disable dropdowns
+            } else {
+                alert(data.error || 'Error locking week');
+            }
+        } catch (error) {
+            console.error('Error locking week:', error);
+            alert('Error locking week');
+        }
     }
 }
 
@@ -110,19 +191,52 @@ function fetchGamesForWeek(week) {
                 data.forEach(game => {
                     const home = game.home_team;
                     const away = game.away_team;
+                    const homeAbbr = getTeamAbbreviation(home);
+                    const awayAbbr = getTeamAbbreviation(away);
                     const commence = new Date(game.commence_time).toLocaleString();
+                    
+                    // Check if we have odds data (bookmakers array with data)
+                    let bookmakersArray = game.bookmakers;
+                    if (bookmakersArray && typeof bookmakersArray === 'object' && bookmakersArray.bookmakers) {
+                        bookmakersArray = bookmakersArray.bookmakers;
+                    }
+                    const hasOdds = bookmakersArray && Array.isArray(bookmakersArray) && bookmakersArray.length > 0;
+                    
                     const div = document.createElement('div');
                     div.className = 'bg-white rounded-lg shadow-lg p-6 transform hover:scale-105 transition';
-                    div.innerHTML = `
-                        <div class="text-center">
-                            <div class="text-lg font-bold text-gray-900 mb-2">${away} @ ${home}</div>
-                            <div class="text-sm text-gray-600">${commence}</div>
-                            <div class="mt-3 flex justify-center space-x-2">
-                                <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs">${away}</span>
-                                <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs">${home}</span>
+                    
+                    if (hasOdds) {
+                        // Show full team names when we have odds
+                        div.innerHTML = `
+                            <div class="text-center">
+                                <div class="text-lg font-bold text-gray-900 mb-2">${away} @ ${home}</div>
+                                <div class="text-sm text-gray-600">${commence}</div>
+                                <div class="mt-3 flex justify-center space-x-2">
+                                    <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs">${away}</span>
+                                    <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs">${home}</span>
+                                </div>
+                                <div class="mt-2">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Live Odds</span>
+                                </div>
                             </div>
-                        </div>
-                    `;
+                        `;
+                    } else {
+                        // Show abbreviated format when no odds available
+                        div.innerHTML = `
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-gray-900 mb-2">${awayAbbr}/${homeAbbr}</div>
+                                <div class="text-sm text-gray-600 mb-2">${away} @ ${home}</div>
+                                <div class="text-sm text-gray-500">${commence}</div>
+                                <div class="mt-3 flex justify-center space-x-2">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">${awayAbbr}</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">${homeAbbr}</span>
+                                </div>
+                                <div class="mt-2">
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Schedule Only</span>
+                                </div>
+                            </div>
+                        `;
+                    }
                     gamesList.appendChild(div);
                 });
             } else {
@@ -165,8 +279,20 @@ async function fetchPicksForWeek(week) {
     }
 }
 
-function getFanDuelBookmaker(game) {
-    return game.bookmakers?.find(bm => bm.key === 'fanduel');
+function getDraftKingsBookmaker(game) {
+    // Handle nested bookmakers structure: game.bookmakers.bookmakers
+    let bookmakersArray = game.bookmakers;
+    
+    // If bookmakers is an object with a bookmakers property, use that
+    if (bookmakersArray && typeof bookmakersArray === 'object' && bookmakersArray.bookmakers) {
+        bookmakersArray = bookmakersArray.bookmakers;
+    }
+    
+    // Ensure bookmakers is an array before trying to find
+    if (!bookmakersArray || !Array.isArray(bookmakersArray)) {
+        return null;
+    }
+    return bookmakersArray.find(bm => bm.key === 'draftkings');
 }
 
 function getMoneylineOptions(games) {
@@ -174,10 +300,23 @@ function getMoneylineOptions(games) {
     if (!Array.isArray(games)) return options;
     
     games.forEach(game => {
-        const fanduel = getFanDuelBookmaker(game);
-        if (!fanduel) return;
-        const h2h = fanduel.markets?.find(m => m.key === 'h2h');
-        if (!h2h) return;
+        // Handle nested bookmakers structure
+        let bookmakersArray = game.bookmakers;
+        if (bookmakersArray && typeof bookmakersArray === 'object' && bookmakersArray.bookmakers) {
+            bookmakersArray = bookmakersArray.bookmakers;
+        }
+        
+        // Skip if no bookmakers data
+        if (!bookmakersArray || !Array.isArray(bookmakersArray) || bookmakersArray.length === 0) {
+            return;
+        }
+        
+        const draftkings = getDraftKingsBookmaker(game);
+        if (!draftkings || !draftkings.markets) return;
+        
+        const h2h = draftkings.markets.find(m => m.key === 'h2h');
+        if (!h2h || !h2h.outcomes) return;
+        
         h2h.outcomes.forEach(outcome => {
             const price = outcome.price > 0 ? `+${outcome.price}` : `${outcome.price}`;
             options.push({ label: `${outcome.name} (${price})`, value: outcome.name });
@@ -195,10 +334,22 @@ function getFavoriteUnderdogOptions(games) {
     if (!Array.isArray(games)) return { favorites: [], underdogs: [] };
     
     games.forEach(game => {
-        const fanduel = getFanDuelBookmaker(game);
-        if (!fanduel) return;
-        const spreadsMarket = fanduel.markets?.find(m => m.key === 'spreads');
-        if (spreadsMarket && spreadsMarket.outcomes.length === 2) {
+        // Handle nested bookmakers structure
+        let bookmakersArray = game.bookmakers;
+        if (bookmakersArray && typeof bookmakersArray === 'object' && bookmakersArray.bookmakers) {
+            bookmakersArray = bookmakersArray.bookmakers;
+        }
+        
+        // Skip if no bookmakers data
+        if (!bookmakersArray || !Array.isArray(bookmakersArray) || bookmakersArray.length === 0) {
+            return;
+        }
+        
+        const draftkings = getDraftKingsBookmaker(game);
+        if (!draftkings || !draftkings.markets) return;
+        
+        const spreadsMarket = draftkings.markets.find(m => m.key === 'spreads');
+        if (spreadsMarket && spreadsMarket.outcomes && spreadsMarket.outcomes.length === 2) {
             const [team1, team2] = spreadsMarket.outcomes;
             if (team1.point < 0) favorites.push({ name: team1.name, spread: team1.point });
             if (team2.point < 0) favorites.push({ name: team2.name, spread: team2.point });
@@ -223,13 +374,25 @@ function getOverUnderOptions(games) {
     if (!Array.isArray(games)) return { overs: [], unders: [] };
     
     games.forEach(game => {
-        const fanduel = getFanDuelBookmaker(game);
-        if (!fanduel) return;
+        // Handle nested bookmakers structure
+        let bookmakersArray = game.bookmakers;
+        if (bookmakersArray && typeof bookmakersArray === 'object' && bookmakersArray.bookmakers) {
+            bookmakersArray = bookmakersArray.bookmakers;
+        }
+        
+        // Skip if no bookmakers data
+        if (!bookmakersArray || !Array.isArray(bookmakersArray) || bookmakersArray.length === 0) {
+            return;
+        }
+        
+        const draftkings = getDraftKingsBookmaker(game);
+        if (!draftkings || !draftkings.markets) return;
+        
         const home = game.home_team;
         const away = game.away_team;
         const gameLabel = `${away} @ ${home}`;
-        const totalsMarket = fanduel.markets?.find(m => m.key === 'totals');
-        if (totalsMarket) {
+        const totalsMarket = draftkings.markets.find(m => m.key === 'totals');
+        if (totalsMarket && totalsMarket.outcomes) {
             totalsMarket.outcomes.forEach(outcome => {
                 if (outcome.name === 'Over') overs.push({ label: `Over ${outcome.point} (${gameLabel})`, value: `Over ${outcome.point} (${gameLabel})` });
                 if (outcome.name === 'Under') unders.push({ label: `Under ${outcome.point} (${gameLabel})`, value: `Under ${outcome.point} (${gameLabel})` });
@@ -253,48 +416,11 @@ async function getTouchdownScorerOptions(games) {
         if (!Array.isArray(games)) return [];
         
         games.forEach(game => {
-            // Extract team abbreviations from team names
             const homeTeam = game.home_team;
             const awayTeam = game.away_team;
             
-            // Map full team names to abbreviations
-            const teamMap = {
-                "Kansas City Chiefs": "KC",
-                "Baltimore Ravens": "BAL",
-                "Buffalo Bills": "BUF",
-                "New York Jets": "NYJ",
-                "Dallas Cowboys": "DAL",
-                "Philadelphia Eagles": "PHI",
-                "Miami Dolphins": "MIA",
-                "New England Patriots": "NE",
-                "Cincinnati Bengals": "CIN",
-                "Cleveland Browns": "CLE",
-                "Pittsburgh Steelers": "PIT",
-                "Houston Texans": "HOU",
-                "Indianapolis Colts": "IND",
-                "Jacksonville Jaguars": "JAX",
-                "Tennessee Titans": "TEN",
-                "Denver Broncos": "DEN",
-                "Las Vegas Raiders": "LV",
-                "Los Angeles Chargers": "LAC",
-                "Los Angeles Rams": "LAR",
-                "San Francisco 49ers": "SF",
-                "Seattle Seahawks": "SEA",
-                "Arizona Cardinals": "ARI",
-                "Detroit Lions": "DET",
-                "Green Bay Packers": "GB",
-                "Minnesota Vikings": "MIN",
-                "Chicago Bears": "CHI",
-                "New Orleans Saints": "NO",
-                "Tampa Bay Buccaneers": "TB",
-                "Atlanta Falcons": "ATL",
-                "Carolina Panthers": "CAR",
-                "New York Giants": "NYG",
-                "Washington Commanders": "WAS"
-            };
-            
-            if (teamMap[homeTeam]) abbrs.add(teamMap[homeTeam]);
-            if (teamMap[awayTeam]) abbrs.add(teamMap[awayTeam]);
+            if (TEAM_ABBREVIATIONS[homeTeam]) abbrs.add(TEAM_ABBREVIATIONS[homeTeam]);
+            if (TEAM_ABBREVIATIONS[awayTeam]) abbrs.add(TEAM_ABBREVIATIONS[awayTeam]);
         });
         
         const abbrList = Array.from(abbrs);
@@ -589,6 +715,18 @@ async function renderPicksTableWithOptions() {
     }
 }
 
+function setModeButtonStyles() {
+    document.getElementById('picks-mode-btn').classList.toggle('bg-purple-600', picksMode);
+    document.getElementById('picks-mode-btn').classList.toggle('text-white', picksMode);
+    document.getElementById('picks-mode-btn').classList.toggle('bg-gray-200', !picksMode);
+    document.getElementById('picks-mode-btn').classList.toggle('text-gray-700', !picksMode);
+
+    document.getElementById('results-mode-btn').classList.toggle('bg-purple-600', !picksMode);
+    document.getElementById('results-mode-btn').classList.toggle('text-white', !picksMode);
+    document.getElementById('results-mode-btn').classList.toggle('bg-gray-200', picksMode);
+    document.getElementById('results-mode-btn').classList.toggle('text-gray-700', picksMode);
+}
+
 // Event listeners
 document.addEventListener('DOMContentLoaded', function() {
     populateWeekSelector();
@@ -604,9 +742,55 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Lock week button
+    // Lock/Unlock week button
     document.getElementById('lock-week-btn').addEventListener('click', function() {
-        lockWeek(weekSelector.value);
+        toggleWeekLock(weekSelector.value);
+    });
+    
+    // Refresh odds button
+    document.getElementById('refresh-odds-btn').addEventListener('click', async function() {
+        const week = weekSelector.value;
+        if (!week) {
+            alert('Please select a week first');
+            return;
+        }
+        
+        // Disable button and show loading state
+        const btn = this;
+        const originalText = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = `
+            <svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
+            <span>Refreshing...</span>
+        `;
+        
+        try {
+            const response = await fetch('/api/games/refresh', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ week: week })
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+                alert(result.message);
+                // Refresh the games and picks display
+                fetchGamesForWeek(week);
+                renderPicksTableWithOptions();
+            } else {
+                alert(result.error || 'Error refreshing odds');
+            }
+        } catch (error) {
+            console.error('Error refreshing odds:', error);
+            alert('Error refreshing odds. Please try again.');
+        } finally {
+            // Re-enable button
+            btn.disabled = false;
+            btn.innerHTML = originalText;
+        }
     });
     
     // Save all button
@@ -642,7 +826,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Add event listeners for mode toggle
+    // Mode toggle buttons
     document.getElementById('picks-mode-btn').addEventListener('click', function() {
         picksMode = true;
         setModeButtonStyles();
@@ -654,15 +838,3 @@ document.addEventListener('DOMContentLoaded', function() {
         renderPicksTableWithOptions();
     });
 });
-
-function setModeButtonStyles() {
-    document.getElementById('picks-mode-btn').classList.toggle('bg-purple-600', picksMode);
-    document.getElementById('picks-mode-btn').classList.toggle('text-white', picksMode);
-    document.getElementById('picks-mode-btn').classList.toggle('bg-gray-200', !picksMode);
-    document.getElementById('picks-mode-btn').classList.toggle('text-gray-700', !picksMode);
-
-    document.getElementById('results-mode-btn').classList.toggle('bg-purple-600', !picksMode);
-    document.getElementById('results-mode-btn').classList.toggle('text-white', !picksMode);
-    document.getElementById('results-mode-btn').classList.toggle('bg-gray-200', picksMode);
-    document.getElementById('results-mode-btn').classList.toggle('text-gray-700', picksMode);
-}
